@@ -20,13 +20,13 @@ pipeline {
                 }
             }
         }
-        stage('Build App') {
-            steps {
-                script {
-                    sh "make build"
-                }
-            }
-        }
+        // stage('Build App') {
+        //     steps {
+        //         script {
+        //             sh "make build"
+        //         }
+        //     }
+        // }
         stage('Release') {
             steps {
                 script {
@@ -35,18 +35,18 @@ pipeline {
             }
         }
     }
-    // post {
-        // always {
-        //     deleteDir()
-        //     ws(pwd() + "@tmp") {
-        //         step([$class: 'WsCleanup'])
-        //     }
-        //     ws(pwd() + "@script") {
-        //         step([$class: 'WsCleanup'])
-        //     }
-        //     ws(pwd() + "@script@tmp") {
-        //         step([$class: 'WsCleanup'])
-        //     }
-        // }
-    // }
+    post {
+        always {
+            deleteDir()
+            ws(pwd() + "@tmp") {
+                step([$class: 'WsCleanup'])
+            }
+            ws(pwd() + "@script") {
+                step([$class: 'WsCleanup'])
+            }
+            ws(pwd() + "@script@tmp") {
+                step([$class: 'WsCleanup'])
+            }
+        }
+    }
 }
