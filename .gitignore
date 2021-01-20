@@ -5,7 +5,6 @@ make2
 .DS_Store
 app/.cache
 app/.local
-webapp.js
 .scannerwork/
 .sonar/
 .terraform/
