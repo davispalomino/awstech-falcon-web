@@ -21,7 +21,7 @@ release:
 	terraform plan \
 	  -var 'service=$(SERVICE)' \
 	  -var 'project=$(PROJECT)' \
-	  -var 'env=$(ENV)'
+	  -var 'env=$(ENV)' && \
 	terraform apply \
 	  -var 'service=$(SERVICE)' \
 	  -var 'project=$(PROJECT)' \
