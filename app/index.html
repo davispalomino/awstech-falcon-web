@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Game Score</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1000, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen:400,700">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="layout.css">
+    <script charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script charset="utf-8" src="https://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+    <script charset="utf-8" src="https://cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js"></script>
+    <script charset="utf-8" src="webapp.js"></script>
+  </head>
+  <body>
+
+    <div id="page_container">
+
+      <h1>DEMO SCORE GAME v0.0.1</h1>
+
+      <button type="button" class="button" id="add_company">Add Game Score</button>
+
+      <table class="datatable" id="table_companies">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>User Name</th>
+            <th>Full Name</th>
+            <th>Points</th>
+            <th>Notes</th>
+            <th>Functions</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="lightbox_bg"></div>
+
+    <div class="lightbox_container">
+      <div class="lightbox_close"></div>
+      <div class="lightbox_content">
+        
+        <h2>Add Game Score</h2>
+        <form class="form add" id="form_company" data-id="" novalidate>
+          <!-- <div class="input_container">
+            <label for="id_">ID: <span class="required">*</span></label>
+            <div class="field_container">
+              <input type="number" step="1" min="0" class="text" name="id_" id="id_" value="" required>
+            </div>
+          </div> -->
+          <div class="input_container">
+            <label for="username">User Name: <span class="required">*</span></label>
+            <div class="field_container">
+              <input type="text" class="text" name="username" id="username" value="" required>
+            </div>
+          </div>
+          <div class="input_container">
+            <label for="fullname">Full Name: <span class="required">*</span></label>
+            <div class="field_container">
+              <input type="text" class="text" name="fullname" id="fullname" value="" required>
+            </div>
+          </div>
+          <div class="input_container">
+            <label for="point">Points: <span class="required">*</span></label>
+            <div class="field_container">
+              <input type="number" step="1" min="0" class="text" name="point" id="point" value="" required>
+            </div>
+          </div>
+          <div class="input_container">
+            <label for="notes">Notes: <span class="required">*</span></label>
+            <div class="field_container">
+              <input type="text" class="text" name="notes" id="notes" value="" required>
+            </div>
+          </div>
+
+          <div class="button_container">
+            <button type="submit">Add company</button>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+
+    <noscript id="noscript_container">
+      <div id="noscript" class="error">
+        <p>JavaScript support is needed to use this page.</p>
+      </div>
+    </noscript>
+
+    <div id="message_container">
+      <div id="message" class="success">
+        <p>This is a success message.</p>
+      </div>
+    </div>
+
+    <div id="loading_container">
+      <div id="loading_container2">
+        <div id="loading_container3">
+          <div id="loading_container4">
+            Loading, please wait...
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-69479487-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+  </body>
+</html>

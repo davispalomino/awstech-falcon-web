@@ -1,0 +1,12 @@
+demo.py
+infraestructure
+docker/passwd
+make2
+.DS_Store
+app/.cache
+app/.local
+webapp.js
+.scannerwork/
+.sonar/
+.terraform/
+terraform/backend.hcl
