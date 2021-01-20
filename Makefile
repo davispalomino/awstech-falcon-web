@@ -36,5 +36,5 @@ destroy:
 	  -var 'project=$(PROJECT)' \
 	  -var 'env=$(ENV)' \
 	-auto-approve
-	@IDINVALIDATE=$$(aws cloudfront create-invalidation --distribution-id ${CLOUFRONT_ID}  --paths "/*" --region ${AWS_REGION} | jq -r ".Invalidation.Id") ; \
+	IDINVALIDATE=$$(aws cloudfront create-invalidation --distribution-id ${CLOUFRONT_ID}  --paths "/*" --region ${AWS_REGION} | jq -r ".Invalidation.Id") ; \
 	while [[ "$$(aws cloudfront get-invalidation --id $$IDINVALIDATE --distribution-id ${CLOUFRONT_ID}  --region ${AWS_REGION} | jq -r '.Invalidation.Status')" != "Completed" ]]; do sleep 2; done
