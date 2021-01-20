@@ -4,7 +4,8 @@ ENV				= dev
 SERVICE			= web
 AWS_REGION		= us-east-1
 AWS_ACCOUNT_ID	= 508571872065
-URL_API			= elb
+URL_API			= falcon-dev-external-1765263255.us-east-1.elb.amazonaws.com
+CLOUFRONT_ID	= E12ARKNKLR01ZI
 
 image:
 	# creando imagen base
@@ -35,7 +36,5 @@ destroy:
 	  -var 'project=$(PROJECT)' \
 	  -var 'env=$(ENV)' \
 	-auto-approve
-	@IDCLOUDFRONT=E12ARKNKLR01ZI ; \
-	echo $$IDCLOUDFRONT ; \
-	IDINVALIDATE=$$(aws cloudfront create-invalidation --distribution-id $$IDCLOUDFRONT --paths "/*" --region ${AWS_REGION} | jq -r ".Invalidation.Id") ; \
-	while [[ "$$(aws cloudfront get-invalidation --id $$IDINVALIDATE --distribution-id $$IDCLOUDFRONT --region ${AWS_REGION} | jq -r '.Invalidation.Status')" != "Completed" ]]; do sleep 2; done
+	@IDINVALIDATE=$$(aws cloudfront create-invalidation --distribution-id ${CLOUFRONT_ID}  --paths "/*" --region ${AWS_REGION} | jq -r ".Invalidation.Id") ; \
+	while [[ "$$(aws cloudfront get-invalidation --id $$IDINVALIDATE --distribution-id ${CLOUFRONT_ID}  --region ${AWS_REGION} | jq -r '.Invalidation.Status')" != "Completed" ]]; do sleep 2; done
