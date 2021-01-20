@@ -42,7 +42,10 @@ resource "aws_cloudfront_distribution" "this" {
         Project = var.project
         Env     = var.env
     }
-
+    
+    viewer_certificate {
+        cloudfront_default_certificate = true
+    }
 
     custom_error_response {
         error_code            = 404
