@@ -27,7 +27,9 @@ release:
 	  -var 'service=$(SERVICE)' \
 	  -var 'project=$(PROJECT)' \
 	  -var 'env=$(ENV)' \
-	-auto-approve 
+	-auto-approve
+	@IDINVALIDATE=$$(aws cloudfront create-invalidation --distribution-id ${CLOUFRONT_ID}  --paths "/*" --region ${AWS_REGION} | jq -r ".Invalidation.Id") ; \
+	while [[ "$$(aws cloudfront get-invalidation --id $$IDINVALIDATE --distribution-id ${CLOUFRONT_ID}  --region ${AWS_REGION} | jq -r '.Invalidation.Status')" != "Completed" ]]; do sleep 2; done
 
 destroy:
 	cd terraform/ && terraform init -backend-config="bucket=$(PROJECT)-terraform" -backend-config="key=$(SERVICE)/$(ENV)/terraform.tfstate" -backend-config="region=${AWS_REGION}" && \
@@ -36,5 +38,3 @@ destroy:
 	  -var 'project=$(PROJECT)' \
 	  -var 'env=$(ENV)' \
 	-auto-approve
-	IDINVALIDATE=$$(aws cloudfront create-invalidation --distribution-id ${CLOUFRONT_ID}  --paths "/*" --region ${AWS_REGION} | jq -r ".Invalidation.Id") ; \
-	while [[ "$$(aws cloudfront get-invalidation --id $$IDINVALIDATE --distribution-id ${CLOUFRONT_ID}  --region ${AWS_REGION} | jq -r '.Invalidation.Status')" != "Completed" ]]; do sleep 2; done
