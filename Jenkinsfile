@@ -35,7 +35,7 @@ pipeline {
             }
         }
     }
-    post {
+    // post {
         // always {
         //     deleteDir()
         //     ws(pwd() + "@tmp") {
@@ -48,5 +48,5 @@ pipeline {
         //         step([$class: 'WsCleanup'])
         //     }
         // }
-    }
+    // }
 }
