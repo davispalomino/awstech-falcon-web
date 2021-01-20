@@ -36,17 +36,17 @@ pipeline {
         }
     }
     post {
-        success {
-            deleteDir()
-            ws(pwd() + "@tmp") {
-                step([$class: 'WsCleanup'])
-            }
-            ws(pwd() + "@script") {
-                step([$class: 'WsCleanup'])
-            }
-            ws(pwd() + "@script@tmp") {
-                step([$class: 'WsCleanup'])
-            }
-        }
+        // always {
+        //     deleteDir()
+        //     ws(pwd() + "@tmp") {
+        //         step([$class: 'WsCleanup'])
+        //     }
+        //     ws(pwd() + "@script") {
+        //         step([$class: 'WsCleanup'])
+        //     }
+        //     ws(pwd() + "@script@tmp") {
+        //         step([$class: 'WsCleanup'])
+        //     }
+        // }
     }
 }
