@@ -14,7 +14,7 @@ image:
 build:
 	# compilando codigo
 	sed -i 's|http://localhost|'$(URL_API)'|g' app/webapp.js
-	@docker run --rm -v $(PWD)/app:/app $(PROJECT)-$(ENV)-$(SERVICE):ofuscator
+	docker run --rm -v $(PWD)/app:/app $(PROJECT)-$(ENV)-$(SERVICE):ofuscator
 
 release:
 	cd terraform/ && terraform init -backend-config="bucket=$(PROJECT)-terraform" -backend-config="key=$(SERVICE)/$(ENV)/terraform.tfstate" -backend-config="region=${AWS_REGION}" && \

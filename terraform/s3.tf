@@ -54,9 +54,8 @@ resource "null_resource" "this" {
   }
 
   provisioner "local-exec" {
-    command = "aws s3 sync ../app/ s3://$AWS_BUCKET/ --region $AWS_REGION --delete --exclude '*.scannerwork/*' --exclude '*.sonar/*'"
+    command = "aws s3 sync ../app/ s3://$AWS_BUCKET/ --region us-east-1 --delete --exclude '*.scannerwork/*' --exclude '*.sonar/*'"
     environment = {
-        AWS_REGION = us-east-1
         AWS_BUCKET = aws_s3_bucket.this.id
     }
   }
