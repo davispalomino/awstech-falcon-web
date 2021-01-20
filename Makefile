@@ -7,6 +7,10 @@ AWS_ACCOUNT_ID	= 508571872065
 URL_API			= http://falcon-dev-external-1765263255.us-east-1.elb.amazonaws.com
 CLOUFRONT_ID	= E12ARKNKLR01ZI
 
+BUILD_UID       = $(shell id -u)
+BUILD_GID       = $(shell id -g)
+BUILD_USERNAME  = $(shell whoami)
+
 image:
 	# creando imagen base
 	@docker build  -f docker/base/Dockerfile -t $(PROJECT)-$(ENV)-$(SERVICE):base .
@@ -14,8 +18,13 @@ image:
 
 build:
 	# compilando codigo
+	@echo 'BUILD_USERNAME:x:BUILD_UID:BUILD_GID::/app:/sbin/nologin' > docker/passwd
+	@sed -i 's/BUILD_USERNAME/'$(BUILD_USERNAME)'/g' docker/passwd
+	@sed -i 's/BUILD_UID/'$(BUILD_UID)'/g' docker/passwd 
+	@sed -i 's/BUILD_GID/'$(BUILD_GID)'/g' docker/passwd
+
 	sed -i 's|http://localhost|'$(URL_API)'|g' app/webapp.js
-	docker run --rm -v $(PWD)/app:/app $(PROJECT)-$(ENV)-$(SERVICE):ofuscator
+	docker run --rm --network host -u $(BUILD_UID):$(BUILD_GID) -v $(PWD)/docker/passwd:/etc/passwd:ro -v $(PWD)/app/:/app  $(PROJECT)-$(ENV)-$(SERVICE):ofuscator
 
 release:
 	cd terraform/ && terraform init -backend-config="bucket=$(PROJECT)-terraform" -backend-config="key=$(SERVICE)/$(ENV)/terraform.tfstate" -backend-config="region=${AWS_REGION}" && \
