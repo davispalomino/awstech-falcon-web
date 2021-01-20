@@ -35,7 +35,7 @@ destroy:
 	  -var 'project=$(PROJECT)' \
 	  -var 'env=$(ENV)' \
 	-auto-approve
-	@IDCLOUDFRONT=$$(aws cloudfront list-distributions --query "DistributionList.Items[*].{Id:Id,Aliases:Aliases.Items[*]}" --region ${AWS_REGION} | jq  '.[] | select(.Aliases==["${DOMAIN}"])' | jq -r '.Id') ; \
+	@IDCLOUDFRONT=E12ARKNKLR01ZI ; \
 	echo $$IDCLOUDFRONT ; \
 	IDINVALIDATE=$$(aws cloudfront create-invalidation --distribution-id $$IDCLOUDFRONT --paths "/*" --region ${AWS_REGION} | jq -r ".Invalidation.Id") ; \
 	while [[ "$$(aws cloudfront get-invalidation --id $$IDINVALIDATE --distribution-id $$IDCLOUDFRONT --region ${AWS_REGION} | jq -r '.Invalidation.Status')" != "Completed" ]]; do sleep 2; done
