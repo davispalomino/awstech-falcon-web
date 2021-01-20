@@ -54,11 +54,10 @@ resource "null_resource" "this" {
   }
 
   provisioner "local-exec" {
-    command = "aws s3 sync ../app/ s3://$AWS_BUCKET/ --region $AWS_REGION --delete --profile $AWS_PROFILE --exclude '*.scannerwork/*' --exclude '*.sonar/*'"
+    command = "aws s3 sync ../app/ s3://$AWS_BUCKET/ --region $AWS_REGION --delete --exclude '*.scannerwork/*' --exclude '*.sonar/*'"
     environment = {
-        AWS_REGION = data.vault_generic_secret.this.data["region"]
+        AWS_REGION = us-east-1
         AWS_BUCKET = aws_s3_bucket.this.id
-        AWS_PROFILE = data.vault_generic_secret.this.data["profile"]
     }
   }
 }
