@@ -4,7 +4,7 @@ ENV				= dev
 SERVICE			= web
 AWS_REGION		= us-east-1
 AWS_ACCOUNT_ID	= 508571872065
-URL_API			= falcon-dev-external-1765263255.us-east-1.elb.amazonaws.com
+URL_API			= http://falcon-dev-external-1765263255.us-east-1.elb.amazonaws.com
 CLOUFRONT_ID	= E12ARKNKLR01ZI
 
 image:
