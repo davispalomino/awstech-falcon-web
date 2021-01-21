@@ -137,7 +137,7 @@ $(document).ready(function(){
       show_loading_message();
       var form_data = $('#form_company').serialize();
       var request   = $.ajax({
-        url:          'https://api.devops.sandboxs.net/putElement',
+        url:          urlAPI+'/putElement',
         cache:        false,
         data:         form_data,
         dataType:     'json',
@@ -171,7 +171,7 @@ $(document).ready(function(){
     show_loading_message();
     var id      = $(this).data('id');
     var request = $.ajax({
-      url:          'https://api.devops.sandboxs.net/getElement?idKey='+ id,
+      url:          urlAPI+'/getElement?idKey='+ id,
       cache:        false,
       dataType:     'json',
       contentType:  'application/json; charset=utf-8',
@@ -215,7 +215,7 @@ $(document).ready(function(){
       var id        = $('#form_company').attr('data-id');
       var form_data = $('#form_company').serialize();
       var request   = $.ajax({
-        url:          'https://api.devops.sandboxs.net/updateElementScore?idKey=' + id,
+        url:          urlAPI+'/updateElementScore?idKey=' + id,
         cache:        false,
         data:         form_data,
         dataType:     'json',
@@ -250,7 +250,7 @@ $(document).ready(function(){
       show_loading_message();
       var id      = $(this).data('id');
       var request = $.ajax({
-        url:          'https://api.devops.sandboxs.net/deleteElement?idKey=' + id,
+        url:          urlAPI+'/deleteElement?idKey=' + id,
         cache:        false,
         dataType:     'json',
         contentType:  'application/json; charset=utf-8',
